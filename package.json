@@ -1,0 +1,26 @@
+{
+  "name": "cortex-stun",
+  "version": "1.0.0",
+  "description": "Serves as stun server",
+  "scripts": {
+    "test": "mocha src/ --recursive --exit",
+    "start": "node src/main/service.js --use_strict"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/cortex-core/cortex-stun.git"
+  },
+  "author": "Basar Turgut",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/cortex-core/cortex-stun/issues"
+  },
+  "homepage": "https://github.com/cortex-core/cortex-stun#readme",
+  "dependencies": {
+    "node-stun": "git+https://github.com/cortex-core/stun.git#v1.0.2",
+    "winston": "^3.2.1"
+  },
+  "devDependencies": {
+    "mocha": "^6.1.2"
+  }
+}
