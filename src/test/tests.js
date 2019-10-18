@@ -1,6 +1,11 @@
 const stun = require('node-stun');
+const redis = require('redis').createClient();
 
-describe('cortex-stun simple tests', function() {
+redis.on("error", function (err) {
+    console.log(err);
+});
+
+describe('cortex-stun stun protocol IT', function() {
 
     let client;
     beforeEach(async function () {
@@ -16,11 +21,11 @@ describe('cortex-stun simple tests', function() {
         }
     });
 
-    it('should support stun requests and update client-endpoint bindings in redis', done => {
+    it('should support stun requests and regB msg', done => {
         if (client) {
             client.start(function (result) {
                 if (result != 0) {
-                    return;
+                    new Error("Status code is non-zero");
                 }
                 const mapped = client.getMappedAddr();
                 console.log([
@@ -32,10 +37,42 @@ describe('cortex-stun simple tests', function() {
                     " mapped=" + mapped.address + ":" + mapped.port,
                     " rtt=" + client.getRtt()
                 ].join(''));
-
-                // TODO : Validate if bindings appear in redis
                 done();
             });
         }
+    });
+});
+
+describe('cortex-stun redis IT', function() {
+
+    it('should support redis set', done => {
+        redis.del('test_key', function (err) {
+            if (err != null) {
+                throw err;
+            }
+            redis.set("test_key", "test_value", function (err) {
+                if (err != null) {
+                    throw err;
+                }
+                done();
+            });
+        });
+    });
+
+    it('should support redis get', done => {
+        redis.set('test_key', 'test_value',  function (err) {
+            if (err != null) {
+                throw err;
+            }
+            redis.get("test_key", function (err, res) {
+                if (err != null) {
+                    throw err;
+                }
+                if (res !== "test_value") {
+                    throw new Error("Failed to match");
+                }
+                done();
+            });
+        });
     });
 });

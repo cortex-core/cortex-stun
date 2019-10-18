@@ -18,6 +18,7 @@
   "homepage": "https://github.com/cortex-core/cortex-stun#readme",
   "dependencies": {
     "node-stun": "git+https://github.com/cortex-core/stun.git#v1.0.2",
+    "redis": "^2.8.0",
     "winston": "^3.2.1"
   },
   "devDependencies": {
