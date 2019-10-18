@@ -1,6 +1,6 @@
 {
   "name": "cortex-stun",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Serves as stun server",
   "scripts": {
     "test": "mocha src/ --recursive --exit",
