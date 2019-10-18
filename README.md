@@ -1,2 +1,2 @@
-# cortex-route [![Build Status](https://travis-ci.com/cortex-core/cortex-route.svg?branch=master)](https://travis-ci.com/cortex-core/cortex-route)
-Service to provide scalable STUN functionality and respond peer route queries
+[![Build Status](https://travis-ci.com/cortex-core/cortex-stun.svg?branch=master)](https://travis-ci.com/cortex-core/cortex-stun)
+Service to provide STUN functionality and register client - endpoint bindings
