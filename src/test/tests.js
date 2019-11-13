@@ -42,37 +42,3 @@ describe('cortex-stun stun protocol IT', function() {
         }
     });
 });
-
-describe('cortex-stun redis IT', function() {
-
-    it('should support redis set', done => {
-        redis.del('test_key', function (err) {
-            if (err != null) {
-                throw err;
-            }
-            redis.set("test_key", "test_value", function (err) {
-                if (err != null) {
-                    throw err;
-                }
-                done();
-            });
-        });
-    });
-
-    it('should support redis get', done => {
-        redis.set('test_key', 'test_value',  function (err) {
-            if (err != null) {
-                throw err;
-            }
-            redis.get("test_key", function (err, res) {
-                if (err != null) {
-                    throw err;
-                }
-                if (res !== "test_value") {
-                    throw new Error("Failed to match");
-                }
-                done();
-            });
-        });
-    });
-});
