@@ -8,6 +8,11 @@ redis.on("error", function (err) {
 describe('cortex-stun stun protocol IT', function() {
 
     let client;
+    let service;
+    before(async function () {
+        service = require("../main/service");
+    });
+
     beforeEach(async function () {
         client = stun.createClient(Buffer.from("00ea1da4192a2030f"));
         client.setServerAddr("127.0.0.1", 3478);
@@ -17,6 +22,11 @@ describe('cortex-stun stun protocol IT', function() {
         if (client) {
             client.close(function () {
                 console.log("All sockets closed.");
+            });
+        }
+        if (service) {
+            service.close(function () {
+                console.log("Service instance is closed.");
             });
         }
     });
