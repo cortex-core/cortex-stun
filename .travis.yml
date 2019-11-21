@@ -1,0 +1,14 @@
+dist: bionic
+sudo: required
+apt:
+  packages:
+  - net-tools
+language: node_js
+node_js:
+- "10"
+before_script:
+- sudo /sbin/ifconfig lo:2 127.0.0.2 netmask 255.255.255.0 up
+- npm ci --dev
+- npm install
+script:
+- npm run test
